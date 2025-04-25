@@ -7,21 +7,21 @@ export async function handleLogin(
   accessToken: string,
   refreshToken: string,
 ) {
-  cookies().set("session_userid", userId, {
+  (await cookies()).set("session_userid", userId, {
     httpOnly: true,
     secure: false,
     maxAge: 60 * 60 * 24 * 7, // One week
     path: "/",
   });
 
-  cookies().set("session_access_token", accessToken, {
+  (await cookies()).set("session_access_token", accessToken, {
     httpOnly: true,
     secure: false,
     maxAge: 60 * 60, // 60 minutes
     path: "/",
   });
 
-  cookies().set("session_refresh_token", refreshToken, {
+  (await cookies()).set("session_refresh_token", refreshToken, {
     httpOnly: true,
     secure: false,
     maxAge: 60 * 60 * 24 * 7, // One week
@@ -30,20 +30,20 @@ export async function handleLogin(
 }
 
 export async function resetAuthCookies() {
-  cookies().set("session_userid", "");
-  cookies().set("session_access_token", "");
-  cookies().set("session_refresh_token", "");
+  (await cookies()).set("session_userid", "");
+  (await cookies()).set("session_access_token", "");
+  (await cookies()).set("session_refresh_token", "");
 }
 
 //
 // Get data
 
 export async function getUserId() {
-  const userId = cookies().get("session_userid")?.value;
+  const userId = (await cookies()).get("session_userid")?.value;
   return userId ? userId : null;
 }
 
 export async function getAccessToken() {
-  const accessToken = cookies().get("session_access_token")?.value;
+  const accessToken = (await cookies()).get("session_access_token")?.value;
   return accessToken;
 }
