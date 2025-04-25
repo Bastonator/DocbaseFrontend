@@ -58,7 +58,7 @@ const EditReport: React.FC<PatientProps> = ({ patient }) => {
     router.push(`/pages/patient/${id}`);
   };
 
-  const [patient, setPatients] = useState<PatientType | null>(null);
+  const [patients, setPatients] = useState<PatientType | null>(null);
 
   const getPatients = async () => {
     const tmpPatients = await fetch(
