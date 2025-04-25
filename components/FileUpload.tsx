@@ -2,8 +2,11 @@
 
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
+type FileUploadProps = {
+  Token: string;
+};
 
-const FileUpload = ({ Token }) => {
+const FileUpload: React.FC<FileUploadProps> = ({ Token }) => {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [isUpload, setisupload] = useState(false);
 

@@ -1,11 +1,14 @@
 "use client";
 import React from "react";
-import Search from "@/components/Search";
 import FileUpload from "@/components/FileUpload";
 import { resetAuthCookies } from "@/app/lib/actions";
 import { useRouter } from "next/navigation";
 
-const Header = ({ Token }) => {
+type FileUploadProps = {
+  Token: string;
+};
+
+const Header: React.FC<FileUploadProps> = ({ Token }) => {
   const router = useRouter();
 
   const submitLogout = async () => {

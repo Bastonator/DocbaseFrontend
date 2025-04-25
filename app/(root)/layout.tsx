@@ -4,8 +4,6 @@ import MobileNavigation from "@/components/MobileNavigation";
 import Header from "@/components/Header";
 import { getUserId } from "../lib/actions";
 import { getAccessToken } from "../lib/actions";
-import LoginPageNoToken from "@/components/LoginPageNoToken";
-import { redirect } from "next/navigation";
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   const userId = await getUserId();
