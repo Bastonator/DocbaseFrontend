@@ -1,8 +1,6 @@
 "use client";
 
-import FilesList from "@/components/FilesList";
 import React from "react";
-import Link from "next/link";
 import {
   DialogContent,
   DialogDescription,
@@ -10,8 +8,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { FileType } from "@/components/FetchDocs";
 
-const Share = ({ file, setOpenDialog, setEmails, handleRemoveuser }) => {
+interface FileProps {
+  file: FileType;
+}
+const Share: React.FC<FileProps> = ({ file, setOpenDialog, setEmails }) => {
   return (
     <>
       <DialogContent className={"shad-dialog button"}>

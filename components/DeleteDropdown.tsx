@@ -1,8 +1,6 @@
 "use client";
 
-import FilesList from "@/components/FilesList";
 import React, { useState } from "react";
-import Link from "next/link";
 import {
   Dialog,
   DialogContent,
@@ -13,7 +11,13 @@ import {
 } from "@/components/ui/dialog";
 import axiosInstance from "@/components/axios";
 
-const Dropdown = ({ file }) => {
+import { FileType } from "@/components/FetchDocs";
+
+interface FileProps {
+  file: FileType;
+}
+
+const Dropdown: React.FC<FileProps> = ({ file }) => {
   const [openDialog, setOpenDialog] = useState<string | null>(null);
 
   const handleDeletefile = (e: React.MouseEvent<HTMLButtonElement>) => {
