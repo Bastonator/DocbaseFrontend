@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import apiService from "@/app/services/apiService";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { StaffType } from "@/app/(root)/pages/staffList/page";
 
 {
   /*
@@ -20,7 +21,7 @@ const AddPatients = () => {
   const [gender, setgender] = useState("");
   const [errors, setErrors] = useState<string[]>([]);
   const [staff, setStaff] = useState({});
-  const [staffList, setStaffList] = useState([]);
+  const [staffList, setStaffList] = useState<StaffType[]>([]);
   const [isUpload, setisupload] = useState(false);
 
   const getStaff = async () => {
