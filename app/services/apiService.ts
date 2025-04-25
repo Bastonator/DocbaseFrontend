@@ -4,7 +4,7 @@ const apiService = {
   get: async function (url: string): Promise<any> {
     console.log("get", url);
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token") || "";
 
     return new Promise((resolve, reject) => {
       fetch(`${process.env.NEXT_PUBLIC_API_HOST}${url}`, {
@@ -56,7 +56,7 @@ const apiService = {
 
     const token = localStorage.getItem("token");
 
-    const accessT = await getAccessToken();
+    const accessT = (await getAccessToken()) || "";
 
     return new Promise((resolve, reject) => {
       fetch(`${process.env.NEXT_PUBLIC_API_HOST}${url}`, {
