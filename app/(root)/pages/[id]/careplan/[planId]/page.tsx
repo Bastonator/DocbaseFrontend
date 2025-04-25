@@ -57,7 +57,11 @@ function EditCarePlan() {
     console.log(updateFormData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     e.preventDefault();
     console.log(formData);
     axiosInstance.patch("edit_careplan/" + planId + "/", {
