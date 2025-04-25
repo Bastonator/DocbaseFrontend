@@ -89,7 +89,6 @@ const Dropdown: React.FC<FileProps> = ({ file }) => {
         <ShareInput
           file={file}
           setOpenDialog={setOpenDialog}
-          setEmails={setEmails}
           handleRemoveuser={handleRemoveuser}
         />
       </>

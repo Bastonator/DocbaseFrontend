@@ -13,10 +13,9 @@ import { FileType } from "@/components/FetchDocs";
 interface FileProps {
   file: FileType;
   setOpenDialog: React.Dispatch<React.SetStateAction<string | null>>;
-  setEmails: React.Dispatch<React.SetStateAction<string[]>>;
   handleRemoveuser: () => void;
 }
-const Share: React.FC<FileProps> = ({ file, setOpenDialog, setEmails }) => {
+const Share: React.FC<FileProps> = ({ file, setOpenDialog }) => {
   return (
     <>
       <DialogContent className={"shad-dialog button"}>
@@ -30,7 +29,6 @@ const Share: React.FC<FileProps> = ({ file, setOpenDialog, setEmails }) => {
             <input
               type={"email"}
               placeholder={"enter recipient email"}
-              onChange={(e) => setEmails(e.target.value.trim().split(","))}
               className={"share-input-field"}
             />
           </div>
