@@ -31,7 +31,7 @@ function ViewReport() {
     });
   }, [updateFormData]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateFormData({
       ...formData,
       [e.target.name]: e.target.value.trim(),
@@ -39,7 +39,7 @@ function ViewReport() {
     console.log(updateFormData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
     console.log(formData);
     axiosInstance.put("edit_staffreport/" + staffreportId + "/", {
