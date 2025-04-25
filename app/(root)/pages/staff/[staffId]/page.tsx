@@ -4,7 +4,6 @@ import { useParams } from "next/navigation";
 import apiService from "@/app/services/apiService";
 import { ReportType } from "@/app/(root)/page";
 import Staffreports from "@/components/Staffreports";
-import PatientListItem from "@/components/PatientListItem";
 
 const Page = () => {
   const [staff, setstaff] = useState({});

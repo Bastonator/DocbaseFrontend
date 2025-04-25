@@ -33,7 +33,7 @@ const Dropdown: React.FC<FileProps> = ({ file }) => {
 
   const handleRemoveuser = () => {};
 
-  const handleDeletefile = (e) => {
+  const handleDeletefile = (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     axiosInstance

@@ -24,7 +24,7 @@ const Plandata: React.FC<PlanProps> = ({ plan }) => {
 
   const [openDialog, setOpenDialog] = useState<string | null>(null);
 
-  const handleDeleteCareplan = (e) => {
+  const handleDeleteCareplan = (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     axiosInstance

@@ -24,7 +24,7 @@ const Reportdata: React.FC<ReportProps> = ({ report }) => {
 
   const [openDialog, setOpenDialog] = useState<string | null>(null);
 
-  const handleDeletereport = (e) => {
+  const handleDeletereport = (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     axiosInstance
