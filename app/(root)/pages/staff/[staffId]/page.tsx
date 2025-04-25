@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import apiService from "@/app/services/apiService";
 import { ReportType } from "@/app/(root)/page";
 import Staffreports from "@/components/Staffreports";
+import PatientListItem from "@/components/PatientListItem";
 
 const Page = () => {
   const [staff, setstaff] = useState({});
@@ -60,7 +61,9 @@ const Page = () => {
       <section className={"left-0 mt-20 w-full"}>
         <h1 className={"h4 capitalize"}>View Carer Reports below:</h1>
 
-        <Staffreports report={report} />
+        {staffReport.map((report) => {
+          return <Staffreports key={report.id} report={report} />;
+        })}
       </section>
     </div>
   );
