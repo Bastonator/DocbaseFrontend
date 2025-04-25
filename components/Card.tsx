@@ -4,8 +4,13 @@ import React from "react";
 import Link from "next/link";
 import FormatedDateTime from "@/components/FormatedDateTime";
 import ActionsDropdown from "@/components/ActionsDropdown";
+import { FileType } from "@/components/FetchDocs";
 
-const Cards = ({ file }) => {
+interface FileProps {
+  file: FileType;
+}
+
+const Cards: React.FC<FileProps> = ({ file }) => {
   return (
     <Link
       href={`http://127.0.0.1:8000/api/patients${file.file}`}

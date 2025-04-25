@@ -1,6 +1,5 @@
 "use client";
 
-import FilesList from "@/components/FilesList";
 import React, { useState } from "react";
 import Link from "next/link";
 import {
@@ -21,8 +20,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import ShareInput from "@/components/ShareInput";
 import axiosInstance from "@/components/axios";
+import { FileType } from "@/components/FetchDocs";
 
-const Dropdown = ({ file }) => {
+interface FileProps {
+  file: FileType;
+}
+
+const Dropdown: React.FC<FileProps> = ({ file }) => {
   const [isDropdown, setIsDropdown] = useState(false);
   const [openDialog, setOpenDialog] = useState<string | null>(null);
   const [emails, setEmails] = useState([]);
