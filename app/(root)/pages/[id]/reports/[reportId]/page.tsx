@@ -4,13 +4,8 @@ import axiosInstance from "@/components/axios";
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { PatientType } from "@/app/(root)/pages/patientList/page";
 
-interface PatientProps {
-  patient: PatientType;
-}
-
-const EditReport: React.FC<PatientProps> = ({ patient }) => {
+const EditReport = () => {
   const { id, reportId } = useParams();
   const router = useRouter();
 
@@ -77,9 +72,6 @@ const EditReport: React.FC<PatientProps> = ({ patient }) => {
   if (loggedUser === "01a12d23-b6b0-45b4-961a-86054e0e4bab")
     return (
       <>
-        <h1 className={"font-bold"}>
-          {patient.first_name} {patient.last_name}
-        </h1>
         <div className="flex-col transition">
           <form className="space-y-4 transition">
             <textarea
@@ -112,9 +104,6 @@ const EditReport: React.FC<PatientProps> = ({ patient }) => {
 
   return (
     <>
-      <h1 className={"font-bold"}>
-        {patient.first_name} {patient.last_name}
-      </h1>
       <div className="flex-col transition">
         <form className="space-y-4 transition">
           <textarea
