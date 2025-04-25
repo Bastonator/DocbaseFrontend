@@ -1,0 +1,229 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import apiService from "@/app/services/apiService";
+import { useRouter } from "next/navigation";
+
+const CreateCarePlan = () => {
+  const { id, planId } = useParams();
+
+  console.log(planId);
+
+  const router = useRouter();
+  const [errors, setErrors] = useState<string[]>([]);
+
+  const [formData, setFormData] = useState({
+    goal_of_plan: "",
+    recommendations: "",
+    goals: "",
+    medications: "",
+    relevant_patient_history: "",
+    Physical_of_patient: "",
+  });
+
+  const [careplan, setCareplan] = useState({});
+
+  const getCareplan = async () => {
+    const tmpCareplan = await fetch(
+      `http://127.0.0.1:8000/api/patients/patient_plan/${planId}/`,
+    );
+
+    const data = await tmpCareplan.json();
+    setCareplan(data);
+    setFormData({
+      goal_of_plan: data.goal_of_plan,
+      recommendations: data.recommendations,
+      goals: data.goals,
+      medications: data.medications,
+      relevant_patient_history: data.relevant_patient_history,
+      Physical_of_patient: data.Physical_of_patient,
+    });
+    console.log(data);
+  };
+
+  useEffect(() => {
+    getCareplan();
+  }, [planId]);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const createCareplan = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/patients/patient_plan/${planId}/`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        },
+      );
+
+      {
+        /*
+      const response = await apiService.get(
+          `/api/patients/patient_plan/${planId}/`,
+          JSON.stringify(formData),
+      );
+    */
+      }
+
+      console.log(response);
+      router.push(`/pages/patient/${id}`);
+
+      if (response.ok) {
+        router.push(`/pages/patient/${id}`);
+      } else {
+        const tmpErrors: string[] = Object.values(response).map(
+          (error: any) => {
+            return error;
+          },
+        );
+        setErrors(tmpErrors);
+      }
+      const updatedData = await response.json();
+      setCareplan(updatedData);
+      alert("Care plan updated!");
+    } catch (error) {
+      console.error("Error updating careplan");
+    }
+  };
+
+  if (!careplan)
+    return (
+      <>
+        <h1>Care plan is loading</h1>
+      </>
+    );
+
+  return (
+    <>
+      <h1>CarePlan</h1>
+      <p>{id}</p>
+
+      <div className="flex-col transition">
+        <form onSubmit={createCareplan} className="space-y-4 transition">
+          <textarea
+            defaultValue={"cough"}
+            onChange={handleChange}
+            className="w-full h-[54px] px-4 border border-gray-300 rounded-xl"
+            placeholder="What is the genral goal of the plan we are creating for the patient"
+          ></textarea>
+          <textarea
+            defaultValue={formData.recommendations}
+            onChange={handleChange}
+            className="w-full h-[54px] px-4 border border-gray-300 rounded-xl"
+            placeholder="Any more recommendations for patient"
+          ></textarea>
+          <textarea
+            defaultValue={formData.medications}
+            onChange={handleChange}
+            className="w-full h-[54px] px-4 border border-gray-300 rounded-xl"
+            placeholder="Medications and respective doasges the patient is on"
+          ></textarea>
+          <textarea
+            defaultValue={formData.goals}
+            onChange={handleChange}
+            className="w-full h-[54px] px-4 border border-gray-300 rounded-xl"
+            placeholder="Specific goals we wish the patiet to reach"
+          ></textarea>
+          <textarea
+            defaultValue={formData.relevant_patient_history}
+            onChange={handleChange}
+            className="w-full h-[54px] px-4 border border-gray-300 rounded-xl"
+            placeholder="Relevant Patient History"
+          ></textarea>
+          <textarea
+            defaultValue={formData.Physical_of_patient}
+            onChange={handleChange}
+            className="w-full h-[54px] px-4 border border-gray-300 rounded-xl"
+            placeholder="Patients Physical State"
+          ></textarea>
+          {errors.map((error, index) => {
+            return (
+              <p key={`error_${index}`} className="p-5">
+                {error}
+              </p>
+            );
+          })}
+          <br />
+          <button type="submit">Save CarePlan</button>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default CreateCarePlan;
+
+
+
+
+
+
+
+"use client";
+import React from "react";
+
+import apiService from "@/app/services/apiService";
+import { useEffect, useState } from "react";
+import FilesList from "@/components/FilesList";
+import Search from "@/components/Search";
+import Header from "@/components/Header";
+
+export type FileType = {
+  file: string;
+  user: string;
+  created: string;
+  id: number;
+};
+
+interface documentProps {
+  hiddenChild: React.ReactNode;
+}
+
+const Page: React.FC<documentProps> = ({ hiddenChild }) => {
+  const [files, setfile] = useState<FileType[]>([]);
+  const [fetched, setFetched] = useState(false);
+  const [invsible, setinvisible] = useState(true);
+
+  const getFiles = async () => {
+    const tmpfiles = await apiService.get("/api/patients/files/");
+    setfile(tmpfiles.data);
+    setFetched(true);
+  };
+
+  useEffect(() => {
+    if (fetched) return;
+
+    getFiles();
+  }, [fetched]);
+
+  if (!Array.isArray(files)) {
+    return <p>The file data is not an array</p>;
+  }
+
+  {
+    <Search result={setfile} />;
+  }
+
+  return (
+    <>
+      <div className={"page-container"}>
+        <section className={"w-full"}>
+          <h1 className={"h1 capitalize"}>Documents</h1>
+        </section>
+        {files.map((file) => {
+          return <FilesList key={file.file} file={file} />;
+        })}
+      </div>
+    </>
+  );
+};
+
+export default Page;
