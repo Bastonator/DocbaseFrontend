@@ -12,6 +12,9 @@ import { FileType } from "@/components/FetchDocs";
 
 interface FileProps {
   file: FileType;
+  setOpenDialog: React.Dispatch<React.SetStateAction<string | null>>;
+  setEmails: React.Dispatch<React.SetStateAction<string[]>>;
+  handleRemoveuser: () => void;
 }
 const Share: React.FC<FileProps> = ({ file, setOpenDialog, setEmails }) => {
   return (
