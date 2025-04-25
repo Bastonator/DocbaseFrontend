@@ -4,6 +4,7 @@ import axiosInstance from "@/components/axios";
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { PatientType } from "@/app/(root)/pages/patientList/page";
 
 const EditReport = () => {
   const { id, reportId } = useParams();
