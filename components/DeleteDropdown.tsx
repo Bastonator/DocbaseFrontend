@@ -16,7 +16,7 @@ import axiosInstance from "@/components/axios";
 const Dropdown = ({ file }) => {
   const [openDialog, setOpenDialog] = useState<string | null>(null);
 
-  const handleDeletefile = (e) => {
+  const handleDeletefile = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     axiosInstance
