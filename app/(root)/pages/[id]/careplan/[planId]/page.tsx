@@ -49,7 +49,7 @@ function EditCarePlan() {
     });
   }, [updateFormData]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateFormData({
       ...formData,
       [e.target.name]: e.target.value.trim(),
