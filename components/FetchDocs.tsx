@@ -21,6 +21,7 @@ const Page: React.FC<documentProps> = ({ hiddenChild }) => {
   const [files, setfile] = useState<FileType[]>([]);
   const [fetched, setFetched] = useState(false);
   const [invsible, setinvisible] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getFiles = async () => {
     const tmpfiles = await apiService.get("/api/patients/files/");
@@ -39,8 +40,19 @@ const Page: React.FC<documentProps> = ({ hiddenChild }) => {
   }
 
   {
-    <Search result={files} />;
+    <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />;
   }
+
+  const filteredDocs = files.filter((file) => {
+    const term = searchTerm.toLowerCase();
+
+    return (
+      file.id.toString().toLowerCase().includes(term) ||
+      file.file.toLowerCase().includes(term) ||
+      file.created.toLowerCase().includes(term) ||
+      file.user.toLowerCase().includes(term)
+    );
+  });
 
   return (
     <>
@@ -48,8 +60,8 @@ const Page: React.FC<documentProps> = ({ hiddenChild }) => {
         <section className={"w-full"}>
           <h1 className={"h1 capitalize"}>Documents</h1>
         </section>
-        <Search result={files} />
-        {files.map((file) => {
+        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        {filteredDocs.map((file) => {
           return <FilesList key={file.file} file={file} />;
         })}
       </div>

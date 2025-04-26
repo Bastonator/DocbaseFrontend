@@ -22,6 +22,7 @@ export type PatientType = {
 
 const Page = () => {
   const [patients, setPatients] = useState<PatientType[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getPatients = async () => {
     const tmpPatients = await apiService.get("/api/patients/");
@@ -53,20 +54,35 @@ const Page = () => {
     console.log(plans);*/
   }
 
+  const filteredPatients = patients.filter((patient) => {
+    const term = searchTerm.toLowerCase();
+
+    return (
+      patient.id.toString().toLowerCase().includes(term) ||
+      patient.first_name.toLowerCase().includes(term) ||
+      patient.last_name.toLowerCase().includes(term) ||
+      patient.age.toString().toLowerCase().includes(term) ||
+      patient.user.toLowerCase().includes(term) ||
+      patient.package_type.toLowerCase().includes(term) ||
+      patient.phone.toString().toLowerCase().includes(term) ||
+      patient.address.toLowerCase().includes(term)
+    );
+  });
+
   return (
     <>
       <div className={"page-container"}>
         <section className={"w-full"}>
           <h1 className={"h1 capitalize"}>Patients</h1>
         </section>
-        <SearchPatients result={setPatients} />
+        <SearchPatients searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <Link href={"/pages/addPatient/"} className={"transition"}>
           <button type={"button"} className={"uploader-button"}>
             <p className={"text-white"}>Add Patient</p>
           </button>
         </Link>
       </div>
-      {patients.map((patient) => {
+      {filteredPatients.map((patient) => {
         return <PatientListItem key={patient.id} patient={patient} />;
       })}
     </>

@@ -24,6 +24,7 @@ const Page = () => {
   const loggedUser = localStorage.getItem("thatUser");
 
   const [patient, setPatients] = useState<PatientType | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { id } = useParams();
 
@@ -84,6 +85,15 @@ const Page = () => {
   );
   console.log(patientReportByUser);
 
+  const filteredReports = patientReportByUser.filter((report) => {
+    const term = searchTerm.toLowerCase();
+
+    return (
+      report.id.toString().toLowerCase().includes(term) ||
+      report.report.toLowerCase().includes(term)
+    );
+  });
+
   if (!patient)
     return (
       <div className={"page-container"}>
@@ -106,8 +116,11 @@ const Page = () => {
         </section>
         <section className={"left-0 mt-20 w-full"}>
           <h1 className={"h4 capitalize"}>View Carer Reports below:</h1>
-          <SearchReports result={setreport} />
-          {patientReportByUser.map((report) => {
+          <SearchReports
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
+          {filteredReports.map((report) => {
             return <Patientreports key={report.id} report={report} />;
           })}
         </section>

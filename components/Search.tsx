@@ -1,34 +1,11 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { FileType } from "@/components/FetchDocs";
+type SearchProps = {
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+};
 
-interface FileProps {
-  result: FileType[];
-}
-
-const Search: React.FC<FileProps> = ({ result }) => {
-  const [Search, setSearch] = useState("");
-
-  const handleChange = (val: string) => {
-    setSearch(val);
-    console.log("Value", val);
-  };
-
-  useEffect(() => {
-    axios
-      .get(`http://127.0.0.1:8000/api/patients/search_files?search=${Search}`)
-
-      .then((res) => {
-        result(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, [Search]);
-
+const Search: React.FC<SearchProps> = ({ searchTerm, setSearchTerm }) => {
   return (
     <>
       <div className={"search border-black rounded-b-full"}>
@@ -43,8 +20,8 @@ const Search: React.FC<FileProps> = ({ result }) => {
             <input
               className={"search-input"}
               placeholder="Search"
-              value={Search}
-              onChange={(e) => handleChange(e.target.value.toLowerCase())}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
             />
           </form>
         </div>

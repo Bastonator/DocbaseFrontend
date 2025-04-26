@@ -1,34 +1,11 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
+type SearchProps = {
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+};
 
-const Search = ({ result }) => {
-  const [Search, setSearch] = useState("");
-
-  const handleChange = (val) => {
-    setSearch(val);
-    console.log("Value", val);
-  };
-
-  const handleSubmit = (val) => {
-    console.log("Submitted", val);
-    console.log("Submitted", val);
-  };
-
-  useEffect(() => {
-    axios
-      .get(`http://127.0.0.1:8000/api/patients/search_reports?search=${Search}`)
-
-      .then((res) => {
-        result(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, [Search]);
-
+const Search: React.FC<SearchProps> = ({ searchTerm, setSearchTerm }) => {
   return (
     <>
       <div className={"search border-black rounded-b-full"}>
@@ -43,12 +20,8 @@ const Search = ({ result }) => {
             <input
               className={"search-input"}
               placeholder="Search"
-              value={Search}
-              onChange={(e) => handleChange(e.target.value.toLowerCase())}
-              onKeyDown={(e) => {
-                if (e.key === "Enter")
-                  handleSubmit(e.target.value.toLowerCase());
-              }}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
             />
           </form>
         </div>
