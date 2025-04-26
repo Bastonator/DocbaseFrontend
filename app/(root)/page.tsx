@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <>
       <h1 className="text-3xl font-extrabold text-brand-100">
-        Plus Database - A database system made proprietary for Passion Plus
+        Patient Management and Database Platform
       </h1>
       <br />
       <br />

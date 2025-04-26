@@ -24,7 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
         >
           <Link href={"/"}>
             <img
-              src={"/Passion.jpg"}
+              src={"/Wriber.png"}
               alt={"Pic"}
               width={160}
               height={50}
@@ -32,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
             />
 
             <img
-              src={"/Passion.jpg"}
+              src={"/Wriber.png"}
               alt={"alternative"}
               width={52}
               height={52}
@@ -87,7 +87,7 @@ const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
           </nav>
 
           <img
-            src={"/Passion.jpg"}
+            src={"/Wriber.png"}
             alt={"logo"}
             height={418}
             width={506}
@@ -118,7 +118,7 @@ const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
       >
         <Link href={"/"}>
           <img
-            src={"/Passion.jpg"}
+            src={"/Wriber.png"}
             alt={"Pic"}
             width={160}
             height={50}
@@ -126,7 +126,7 @@ const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
           />
 
           <img
-            src={"Passion.jpg"}
+            src={"/Wriber.png"}
             alt={"alternative"}
             width={52}
             height={52}
@@ -181,7 +181,7 @@ const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
         </nav>
 
         <img
-          src={"/Passion.jpg"}
+          src={"/Wriber.png"}
           alt={"logo"}
           height={418}
           width={506}

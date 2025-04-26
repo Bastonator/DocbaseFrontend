@@ -6,18 +6,21 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <section className="bg-brand p-10 hidden w-1/2 items-center justify-center lg:flex xl:w-2/5">
         <div className="flex max-h-[800px] max-w-[430px] flex-col justify-center space-y-12">
           <img
-            src="/Passion.jpg"
+            src="/Wriber.png"
             alt="Wriber Logo"
             width={124}
             height={80}
             className="h-auto"
           />
           <div className="space-y-5 text-white">
-            <h1 className="h1">We care</h1>
-            <p className="body-1">We are servants, lets serve you!</p>
+            <h1 className="h1">Streamline your patient management.</h1>
+            <p className="body-1">
+              Use our complete and comprehensive platform to manage all patient
+              details and documentations.
+            </p>
           </div>
           <img
-            src="/Passion.jpg"
+            src="/Wriber.png"
             alt="Logo"
             width={342}
             height={342}
