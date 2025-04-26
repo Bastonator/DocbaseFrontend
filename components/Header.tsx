@@ -5,7 +5,7 @@ import { resetAuthCookies } from "@/app/lib/actions";
 import { useRouter } from "next/navigation";
 
 type FileUploadProps = {
-  Token: string;
+  Token?: string;
 };
 
 const Header: React.FC<FileUploadProps> = ({ Token }) => {

@@ -15,7 +15,12 @@ import { cn } from "@/lib/utils";
 import FileUpload from "@/components/FileUpload";
 import { resetAuthCookies } from "@/app/lib/actions";
 
-const MobileNavigation = ({ userId, Token }) => {
+type NavigationProps = {
+  Token?: string;
+  userId?: string;
+};
+
+const MobileNavigation: React.FC<NavigationProps> = ({ userId, Token }) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 

@@ -3,7 +3,7 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 type FileUploadProps = {
-  Token: string;
+  Token?: string;
 };
 
 const FileUpload: React.FC<FileUploadProps> = ({ Token }) => {
