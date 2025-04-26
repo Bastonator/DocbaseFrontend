@@ -11,14 +11,9 @@ interface FileProps {
 const Search: React.FC<FileProps> = ({ result }) => {
   const [Search, setSearch] = useState("");
 
-  const handleChange = (val: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (val: string) => {
     setSearch(val);
     console.log("Value", val);
-  };
-
-  const handleSubmit = (val) => {
-    console.log("Submitted", val);
-    console.log("Submitted", val);
   };
 
   useEffect(() => {
@@ -50,10 +45,6 @@ const Search: React.FC<FileProps> = ({ result }) => {
               placeholder="Search"
               value={Search}
               onChange={(e) => handleChange(e.target.value.toLowerCase())}
-              onKeyDown={(e) => {
-                if (e.key === "Enter")
-                  handleSubmit(e.target.value.toLowerCase());
-              }}
             />
           </form>
         </div>
