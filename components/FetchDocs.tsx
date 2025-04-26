@@ -39,7 +39,7 @@ const Page: React.FC<documentProps> = ({ hiddenChild }) => {
   }
 
   {
-    <Search result={setfile} />;
+    <Search result={files} />;
   }
 
   return (
@@ -48,7 +48,7 @@ const Page: React.FC<documentProps> = ({ hiddenChild }) => {
         <section className={"w-full"}>
           <h1 className={"h1 capitalize"}>Documents</h1>
         </section>
-        <Search result={setfile} />
+        <Search result={files} />
         {files.map((file) => {
           return <FilesList key={file.file} file={file} />;
         })}

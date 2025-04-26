@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FileType } from "@/components/FetchDocs";
 
-const Search = ({ result }: { result: FileType }) => {
+interface FileProps {
+  result: FileType[];
+}
+
+const Search: React.FC<FileProps> = ({ result }) => {
   const [Search, setSearch] = useState("");
 
   const handleChange = (val) => {
