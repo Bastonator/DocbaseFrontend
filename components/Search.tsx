@@ -11,7 +11,7 @@ interface FileProps {
 const Search: React.FC<FileProps> = ({ result }) => {
   const [Search, setSearch] = useState("");
 
-  const handleChange = (val: FileType) => {
+  const handleChange = (val: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(val);
     console.log("Value", val);
   };
