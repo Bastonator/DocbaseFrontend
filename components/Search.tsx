@@ -2,8 +2,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { FileType } from "@/components/FetchDocs";
 
-const Search = ({ result }) => {
+const Search = ({ result }: { result: FileType }) => {
   const [Search, setSearch] = useState("");
 
   const handleChange = (val) => {
